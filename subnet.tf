@@ -17,3 +17,12 @@ resource "aws_subnet" "study_tf_private_db" {
 	}
 }
 
+resource "aws_db_subnet_group" "main" {
+    name        = "study_tf_dbsubnet"
+    description = "It is a DB subnet group on tf_vpc."
+    subnet_ids  = ["${aws_subnet.study_tf_private_db.id}"]
+    tags {
+        Name = "study_tf_dbsubnet"
+    }
+}
+

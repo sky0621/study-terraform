@@ -9,3 +9,8 @@ resource "aws_route_table" "study_tf_public_rtb" {
 	}
 }
 
+resource "aws_route_table_association" "study_tf_public_a" {
+	subnet_id = "${aws_subnet.study_tf_public_web.id}"
+	route_table_id = "${aws_route_table.study_tf_public_rtb.id}"
+}
+
