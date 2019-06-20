@@ -11,6 +11,7 @@ variable "identifier" {}
 # ###################################################################
 # 権限は「ポリシー」で定義
 # 「ポリシー」は「ポリシードキュメント」というJSONで記述
+# どのリソースに何ができるかを定義
 data "aws_iam_policy_document" "assume_role" {
   statement {
       # sts = Security Token Service
