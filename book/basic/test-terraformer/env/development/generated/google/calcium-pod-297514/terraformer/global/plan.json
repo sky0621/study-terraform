@@ -1,0 +1,35 @@
+{
+	"Version": "v0.8.10",
+	"Provider": "google",
+	"Options": {
+		"Resources": [
+			"cloudFunctions"
+		],
+		"Excludes": [],
+		"PathPattern": "{output}/{provider}/calcium-pod-297514/{service}/global/",
+		"PathOutput": "generated",
+		"State": "local",
+		"Bucket": "",
+		"Profile": "",
+		"Verbose": false,
+		"Zone": "",
+		"Regions": [
+			"global"
+		],
+		"Projects": [
+			"calcium-pod-297514"
+		],
+		"Connect": true,
+		"Compact": false,
+		"Filter": [],
+		"Output": "hcl"
+	},
+	"Args": [
+		"global",
+		"calcium-pod-297514",
+		""
+	],
+	"ImportedResource": {
+		"cloudFunctions": null
+	}
+}
