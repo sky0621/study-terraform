@@ -18,7 +18,8 @@ variable "gcp_default_enabled_services" {
   type = list(string)
 
   default = [
-    "auaudit.googleapis.com",
+    "billing.resourceAssociations.create",
+    "audit.googleapis.com",
     "bigquery.googleapis.com",
     "bigquerystorage.googleapis.com",
     "cloudbuild.googleapis.com",
@@ -35,6 +36,7 @@ variable "gcp_default_enabled_services" {
     "storage-api.googleapis.com",
     "storage-component.googleapis.com",
     "artifactregistry.googleapis.com",
+    "cloudbilling.googleapis.com",
   ]
 }
 
