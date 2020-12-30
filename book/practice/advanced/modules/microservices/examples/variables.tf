@@ -5,25 +5,25 @@ variable "gke_project" {
 
 variable "service_name" {
   description = "A service name of the service"
-  type = string
+  type        = string
 }
 
 variable "env" {
   description = "Environment of the microservice"
-  type = string
+  type        = string
 
   validation {
-    condition = contains(["dev", "prd"], var.env)
+    condition     = contains(["dev", "prd"], var.env)
     error_message = "The environment must be dev or prd."
   }
 }
 
 variable "cluster_tfstate_bucket" {
-  type = string
+  type        = string
   description = "GCS bucket for Kubernetes cluster terraform state"
 }
 
 variable "cluster_tfstate_prefix" {
-  type = string
+  type        = string
   description = "GCS prefix for Kubernetes cluster terraform state"
 }

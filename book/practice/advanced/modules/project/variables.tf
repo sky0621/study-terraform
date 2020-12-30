@@ -1,28 +1,28 @@
 // GCPプロジェクトID
 variable "gcp_project" {
   description = "GCP project name"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 // 組織ID
 variable "gcp_org" {
   description = "GCP organization id"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 // 請求先アカウント
 variable "billing_account" {
   description = "Billing account for the GCP project"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 // GCPプロジェクトでデフォルトで有効化するAPI一覧
 variable "gcp_default_enabled_services" {
   description = "GCP API services to be enabled by default"
-  type = list(string)
+  type        = list(string)
 
   default = [
     "audit.googleapis.com",
@@ -48,7 +48,7 @@ variable "gcp_default_enabled_services" {
 // GCPプロジェクトで追加で有効化するAPI一覧
 variable "gcp_additional_enabled_services" {
   description = "Additional GCP API services to be enalbed per project"
-  type = list(string)
+  type        = list(string)
 
   default = []
 }
@@ -56,13 +56,13 @@ variable "gcp_additional_enabled_services" {
 // ロール「roles/viewer」を割り当てるメンバー一覧
 variable "service_viewers" {
   description = "Viewers of the service"
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 // ロール「roles/editor」を割り当てるメンバー一覧
 variable "service_admins" {
   description = "Admins of the service"
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }

@@ -21,7 +21,7 @@ resource "google_project_service" "gcp_api_service" {
   // デフォルトで有効にするAPIと追加で有効にするAPIに分かれているが、ここで一緒くたに扱う
   // ※ count はAPI追加変更のたびに大量のリソース変更が発生するので使わない！
   for_each = toset(concat(var.gcp_default_enabled_services, var.gcp_additional_enabled_services))
-  service = each.key
+  service  = each.key
 
   // ?
   disable_on_destroy = false
@@ -34,7 +34,7 @@ resource "google_project_iam_member" "service_viewers" {
 
   // 誰にロールを割り当てるか
   for_each = toset(var.service_viewers)
-  member = "user:${each.key}"
+  member   = "user:${each.key}"
 
   // 何のロールを割り当てるか
   role = "roles/viewer"
@@ -47,7 +47,7 @@ resource "google_project_iam_member" "service_admins" {
 
   // 誰にロールを割り当てるか
   for_each = toset(var.service_admins)
-  member = "user:${each.key}"
+  member   = "user:${each.key}"
 
   // 何のロールを割り当てるか
   role = "roles/editor"

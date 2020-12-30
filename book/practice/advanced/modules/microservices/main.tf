@@ -1,6 +1,6 @@
 // 「project」モジュールを使う
 module "project" {
-  source = "../project"
+  source      = "../project"
   gcp_project = local.service_name_with_env
 }
 
@@ -13,7 +13,7 @@ resource "google_service_account" "pod_default" {
   // 「project」モジュール経由で対象プロジェクトを指定
   project = module.project.project_id
 
-  account_id = "pod-default"
+  account_id   = "pod-default"
   display_name = "pod-default"
 }
 
@@ -22,7 +22,7 @@ resource "google_service_account_iam_binding" "pod_default_is_workload_identity_
   members = [
     "serviceAccount:${var.gke_project}.svc.id.goog[${kubernetes_namespace.microservice.metadata[0].name}/${kubernetes_service_account.pod_default.metadata[0].name}]"
   ]
-  role = "roles/iam.workloadIdentityUser"
+  role               = "roles/iam.workloadIdentityUser"
   service_account_id = google_service_account.pod_default.name
 }
 
@@ -39,7 +39,7 @@ resource "kubernetes_namespace" "microservice" {
 // k8sのネームスペース内にサービスアカウントを作成
 resource "kubernetes_service_account" "pod_default" {
   metadata {
-    name = "pod-default"
+    name      = "pod-default"
     namespace = kubernetes_namespace.microservice.metadata[0].name
 
     annotations = {
@@ -97,12 +97,12 @@ resource "kubernetes_role_binding" "service_admins_is_admin" {
 // コンテナイメージの取得元
 resource "google_artifact_registry_repository" "container" {
   // 「project」モジュール経由で対象プロジェクトを指定
-  project = module.project.project_id
+  project  = module.project.project_id
   location = var.gcp_region
 
   provider = google-beta
 
-  format = "DOCKER"
+  format        = "DOCKER"
   repository_id = "container"
 }
 
@@ -121,7 +121,7 @@ resource "google_artifact_registry_repository_iam_member" "pod_default_is_artifa
 // Bigqueryのデータセットを作成
 resource "google_bigquery_dataset" "container_log" {
   // 「project」モジュール経由で対象プロジェクトを指定
-  project = module.project.project_id
+  project  = module.project.project_id
   location = var.gcp_region
 
   dataset_id = "container_log"

@@ -1,6 +1,6 @@
 // 「project」モジュールを使う
 module "project" {
-  source = "../project"
+  source      = "../project"
   gcp_project = local.service_name_with_env
 }
 
@@ -13,13 +13,13 @@ resource "google_container_cluster" "primary" {
   name = "primary"
 
   // 「project」モジュール経由で対象プロジェクトを指定
-  project = module.project.project_id
+  project  = module.project.project_id
   location = var.gcp_region
 
   // VPCネイティブクラスタ設定
   // https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips
   ip_allocation_policy {
-    cluster_ipv4_cidr_block = ""
+    cluster_ipv4_cidr_block  = ""
     services_ipv4_cidr_block = ""
   }
 
@@ -40,7 +40,7 @@ resource "google_container_node_pool" "primary" {
   name = "primary"
 
   // 「project」モジュール経由で対象プロジェクトを指定
-  project = module.project.project_id
+  project  = module.project.project_id
   location = var.gcp_region
 
   // GKEクラスタと紐づけ
@@ -48,7 +48,7 @@ resource "google_container_node_pool" "primary" {
 
   node_count = 1
   node_config {
-    preemptible = true
+    preemptible  = true
     machine_type = "e2-medium"
 
     // Workload Identity利用設定

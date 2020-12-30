@@ -1,9 +1,9 @@
 module "microservice" {
   source = "../../microservices"
 
-  gke_project = var.gke_project
+  gke_project  = var.gke_project
   service_name = var.service_name
-  env = var.env
+  env          = var.env
 }
 
 data "terraform_remote_state" "cluster" {
@@ -19,7 +19,7 @@ data "google_client_config" "provider" {}
 provider "kubernetes" {
   load_config_file = false
 
-  host = "https://${data.terraform_remote_state.cluster.outputs.gke_endpoints}"
-  token = data.google_client_config.provider.access_token
+  host                   = "https://${data.terraform_remote_state.cluster.outputs.gke_endpoints}"
+  token                  = data.google_client_config.provider.access_token
   cluster_ca_certificate = base64decode(data.terraform_remote_state.cluster.outputs.gke_ca_certificate)
 }
