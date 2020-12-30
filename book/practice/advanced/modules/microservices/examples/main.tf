@@ -8,7 +8,7 @@ module "microservice" {
 
 data "terraform_remote_state" "cluster" {
   backend = "gcs"
-  config {
+  config = {
     bucket = var.cluster_tfstate_bucket
     prefix = var.cluster_tfstate_prefix
   }
